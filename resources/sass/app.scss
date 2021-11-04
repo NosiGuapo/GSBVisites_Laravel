@@ -1,0 +1,156 @@
+@import "includes";
+
+html{
+    background-color: #f3f4f6;
+}
+
+.formbox{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    width: fit-content;
+    background-color: #fff;
+    box-shadow:
+        3px 2.8px 2.2px rgba(0, 0, 0, 0.004),
+        7.2px 6.7px 5.3px rgba(0, 0, 0, 0.006),
+        13.5px 12.5px 10px rgba(0, 0, 0, 0.008),
+        24.1px 22.3px 17.9px rgba(0, 0, 0, 0.010),
+        45.1px 41.8px 33.4px rgba(0, 0, 0, 0.013),
+        108px 100px 80px rgba(0, 0, 0, 0.03);
+    padding: 4rem 5rem;
+}
+
+header nav{
+    box-shadow:
+        4.8px 0 10px rgba(0, 0, 0, 0.008),
+        38px 0 80px rgba(0, 0, 0, 0.02);
+}
+
+.logbutton{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.green{
+    color: #01b892;
+}
+
+.boldgreen{
+    color: #01b892;
+    font-weight: bold;
+}
+
+.loginbutton{
+    background-color: #01b892;
+    &:hover{
+        background-color: darken(#01b892, 4%);
+    }
+}
+
+.navlinks{
+    transition: color 0.25s ease;
+    &:hover{
+        color: #01b892;
+        //background-color: #fdfdfd;
+    }
+}
+
+.nb-visites{
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.query-results{
+    width: fit-content;
+    margin: 65vh auto 8rem auto;
+    padding: 0;
+
+    .query-table{
+        background-color: #fff;
+        box-shadow:
+            3.4px 3.4px 2.7px rgba(0, 0, 0, 0.012),
+            8.7px 8.7px 6.9px rgba(0, 0, 0, 0.018),
+            17.7px 17.7px 14.2px rgba(0, 0, 0, 0.022),
+            36.5px 36.5px 29.2px rgba(0, 0, 0, 0.028),
+            100px 100px 80px rgba(0, 0, 0, 0.04);
+        border-radius: 8px;
+        th, td {
+            padding: 13px 15px;
+        }
+        thead{
+            background-color: #4a5568;
+        }
+        tbody{
+            tr{
+                border-bottom: 1px solid #dddd;
+                &:nth-of-type(2n){
+                    background-color: #fff;
+                    color: #4a5568;
+                    font-weight: bold;
+                }
+                &:nth-of-type(2n+1){
+                    background-color: darken(#fff, 3%);
+                }
+            }
+        }
+    }
+}
+
+.visits-table{
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 55px;
+    padding: 0;
+    table{
+        box-shadow: 100px 100px 80px rgba(0, 0, 0, 0.07);
+    }
+    th, td{
+        padding: 12px 15px;
+    }
+    thead tr{
+        background-color: #01a482;
+        border-radius: 15px 15px;
+        .visits-categ-1{
+            background-color: darken(#01a482, 3%);
+        }
+        .visits-categ-2{
+            background-color: darken(#01a482, 6%);
+        }
+    }
+    tbody tr{
+        border-bottom: 1px solid #dddd;
+        &:nth-of-type(2n){
+            background-color: #eefcf3;
+            color: darken(#01a482, 2%);
+            font-weight: bold;
+            .visits-categ-1{
+                background-color: darken(#eefcf3, 2%);
+                color: darken(#01a482, 4%);
+            }
+            .visits-categ-2{
+                background-color: darken(#eefcf3, 4%);
+                color: darken(#01a482, 4%);
+            }
+        }
+        &:nth-of-type(2n+1){
+            background-color: #fefefe;
+            .visits-categ-1{
+                background-color: darken(#fefefe, 2%);
+            }
+            .visits-categ-2{
+                background-color: darken(#fefefe, 4%);
+            }
+        }
+        &:last-of-type{
+            border-bottom: 5px solid #01a482;
+            border-bottom-right-radius: 5px;
+            border-bottom-left-radius: 5px;
+        }
+    }
+}
