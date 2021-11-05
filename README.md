@@ -20,7 +20,7 @@ qui soit conforme aux attentes de l'entretien oral, à savoir:
 - Un système de Gestion de Base de Données (Relationnel) devra être utilisé
 - Le language ou Framework utilisé devra se distinguer de ceux présents dans les trois autres projets
 
-Afin de mener mon projet à bien, j'ai décidé d'utiliser le language [**PHP**](https://www.php.net/), ainsi avec le framework [**Laravel**](https://laravel.com/).
+Afin de mener mon projet à bien, j'ai décidé d'utiliser le language [**PHP**](https://www.php.net/) avec le framework [**Laravel**](https://laravel.com/).
 
 ## **Installation**
 Le projet tel qu'il apparaît actuellement contient la majorité des fichiers pré-requis afin de faire fonctionner le site.
