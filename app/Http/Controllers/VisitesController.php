@@ -23,11 +23,13 @@ class VisitesController extends Controller
                 $visites = Rapport::where('visiteur_id', auth()->user()->id)
                     ->where('date', '=', "$query")
                     ->get();
-                return view('visites')->with(compact('visites', 'type'));
             }
         } else {
-            return view("visites")->with('type', $type);
+            $visites = Rapport::where('visiteur_id', auth()->user()->id)
+                ->orderBy('date', 'DESC')
+                ->get();
         }
+        return view('visites')->with(compact('visites', 'type'));
     }
 
     public function create(){
@@ -35,7 +37,9 @@ class VisitesController extends Controller
         $utilisateurRapports = Rapport::where('visiteur_id', auth()->user()->id)->get();
 
         $mPluck = $utilisateurRapports->pluck('medecin_id')->toArray();
-        $medecins = Medecin::orderBy('nom')->whereNotIn('id', $mPluck)->get();
+        $medecins = Medecin::orderBy('nom')
+            ->whereIn('id', $mPluck)
+            ->get();
 
         return view('createVisite', compact(['medecins', 'medicaments']));
 //        return view('createVisite')->with(compact('medecins', 'medicaments'));
@@ -49,10 +53,10 @@ class VisitesController extends Controller
             'balance-sheet' => ['required', 'max:100', 'min:2'],
             'doctor' => ['required', "unique:medecins,id,$leMedecin->id"],
             'date' => ['required', 'date'],
-            'drug' => ['required', 'array'],
-            'drug.*' => ['string'],
-            'amount' => ['required', 'array'],
-            'amount.*' => ['integer']
+            'drug' => ['array'],
+            'drug.*' => ['required', 'string'],
+            'amount' => ['array'],
+            'amount.*' => ['required', 'integer']
 //          preg_match('/amount-/', (string)$request->keys()) => ['required', 'max:3'],
         ];
 
@@ -72,7 +76,7 @@ class VisitesController extends Controller
         /* On vérifie que la requête est valide et que deux médicaments identiques ne soit pas sélectionnés */
 
         if (!$validation->fails()){
-            if (count($inputs['drug']) == count(array_unique($inputs['drug']))){
+            if (empty($inputs['drug']) || count($inputs['drug']) == count(array_unique($inputs['drug']))){
                 try{
                     $rapport = new Rapport;
                     $rapport->motif = $inputs['motive'];
@@ -83,14 +87,17 @@ class VisitesController extends Controller
                     /* On sauvegarde ici pour pouvoir récupérer la clef primaire par la suite */
                     $rapport->save();
 
-                    foreach ($request->input('drug') as $k => $v){
-                        $offrir = new Offrir;
-                        $offrir->rapport_id = $rapport->id;
-                        $offrir->medicament_id = $v;
-                        /* Récupérer la quantité ayant une clef correspondante */
-                        $offrir->quantite = $request->input('amount')[$k];
-                        $offrir->save();
+                    if (!empty($inputs['drug'])){
+                        foreach ($request->input('drug') as $k => $v){
+                            $offrir = new Offrir;
+                            $offrir->rapport_id = $rapport->id;
+                            $offrir->medicament_id = $v;
+                            /* Récupérer la quantité ayant une clef correspondante */
+                            $offrir->quantite = $request->input('amount')[$k];
+                            $offrir->save();
+                        }
                     }
+
                 } catch (Exception $error){
                     return redirect('visites/')->with('event_fail', 'Une erreur est survenue lors de la création du rapport.');
                 }

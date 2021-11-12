@@ -190,6 +190,7 @@ return [
             'min' => 'Le bilan indiqué est trop court.'
         ],
         'amount.*' => [
+            'required' => 'La quantité de l\'échantillon doit être spécifiée',
             'integer' => 'La quantité est obligatoire et doit être un nombre'
         ],
         'date' => [

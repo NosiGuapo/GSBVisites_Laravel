@@ -62,7 +62,7 @@ class UserMedecinsController extends Controller
               - Unique: table,colonne (medecins,tel)
               - Le troisième paramètre est une valeur d'exclusion de ce critère, on exclue donc le numéro de téléphone actuel de ce médecin
              */
-            'spe' => ['nullable', 'alpha', 'max:50', 'min:2']
+            'spe' => ['nullable', 'string', 'max:50', 'min:2']
         ]);
 
         $leMedecin->prenom = $inputs['fname'];
