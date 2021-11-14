@@ -52,7 +52,7 @@ class VisitesController extends Controller
             'motive' => ['required', 'max:100', 'min:2'],
             'balance-sheet' => ['required', 'max:100', 'min:2'],
             'doctor' => ['required', "unique:medecins,id,$leMedecin->id"],
-            'date' => ['required', 'date'],
+            'date' => ['required', 'date', 'max:10'],
             'drug' => ['array'],
             'drug.*' => ['required', 'string'],
             'amount' => ['array'],

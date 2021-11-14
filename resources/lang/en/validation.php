@@ -195,7 +195,8 @@ return [
         ],
         'date' => [
             'required' => 'Veuillez indiquer une date.',
-            'date' => 'Le format de la date est invalide. (jj/mm/aaaa)'
+            'date' => 'Le format de la date est invalide. (jj/mm/aaaa)',
+            'max' => 'Le format de la date est invalide. (jj/mm/aaaa)'
         ]
     ],
 
