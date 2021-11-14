@@ -169,3 +169,21 @@ header nav {
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
 }
+
+.autocom-box {
+  display: none;
+}
+
+.autocom-box.active {
+  display: block;
+}
+
+.autocom-box li {
+  padding: 7px 0 7px 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.autocom-box li:hover {
+  background-color: #e6e6e6;
+}

@@ -154,3 +154,20 @@ header nav{
         }
     }
 }
+
+.autocom-box{
+    display: none;
+}
+
+.autocom-box.active{
+    display: block;
+}
+
+.autocom-box li {
+    padding: 7px 0 7px 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    &:hover{
+        background-color: darken(#fff, 10%);
+    }
+}

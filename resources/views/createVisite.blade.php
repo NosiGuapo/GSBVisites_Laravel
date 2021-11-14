@@ -6,6 +6,7 @@
 
 @section('content')
     <script>
+        /* Ajouts d'offrirs */
         let medicId = [
             @foreach($medicaments as $medicament)
                 "{{ $medicament->id }}",
@@ -20,6 +21,13 @@
         let maxCompteur = 5;
         /* Aucun champ d'offrirs est présent par défaut dans le code HTML, on commence donc à 0 */
         let compteur = 0;
+
+        /* Partie input du médecin */
+        let doctorPossibilities = [
+            @foreach($medecins as $medecin)
+                    "{{$medecin->prenom }} {{$medecin->nom}}",
+            @endforeach
+        ];
     </script>
     <section class="px-6 py-8 max-w-md mx-auto">
         <main class="bg-white border border-gray-200 p-6 rounded-xl">
@@ -44,7 +52,7 @@
                     <label for="date" class="block mb-2 uppercase font-bold text-xs text-gray-700">
                         Date
                     </label>
-                    <input type="date" name="date" class="border border-gray-400 p-2 w-full"
+                    <input type="date" name="date" class="border border-gray-400 p-2 w-full outline-none"
                            value="{{ old('date') }}">
                 </div>
                 @error('date')
@@ -56,13 +64,21 @@
                 <label for="doctor" class="block mb-2 uppercase font-bold text-xs text-gray-700">
                     Médecin
                 </label>
-                <select name="doctor" class="border border-gray-400 p-2 w-full mb-7 outline-none">
-                    @foreach($medecins as $medecin)
-                        <option value="{{$medecin->id}}">
-                            {{$medecin->prenom }} {{$medecin->nom}}
-                        </option>
-                    @endforeach
-                </select>
+                <div class="doctor-input">
+                    <input type="text" name="doctor" class="border border-gray-400 p-2 w-full outline-none" placeholder="Alice UNTEL">
+                    <div class="mb-5 bg-gray-50">
+                        <ul class="autocom-box">
+{{--                            Les résultats de recherche iront ici--}}
+                        </ul>
+                    </div>
+                </div>
+{{--                <select name="doctor" class="border border-gray-400 p-2 w-full mb-7 outline-none">--}}
+{{--                    @foreach($medecins as $medecin)--}}
+{{--                        <option value="{{$medecin->id}}">--}}
+{{--                            {{$medecin->prenom }} {{$medecin->nom}}--}}
+{{--                        </option>--}}
+{{--                    @endforeach--}}
+{{--                </select>--}}
                 @error('doctor')
                 <p class="form-error bg-red-50 px-3 py-4 mb-6 text-red-500 rounded text-xs mt-1">
                     {{ $message }}
