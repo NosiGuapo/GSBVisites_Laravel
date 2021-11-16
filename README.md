@@ -30,6 +30,7 @@ qui soit conforme aux attentes de l'entretien oral, à savoir:
 - Le projet devra contenir un Modèle Conceptuel de Données (MCD), illustrant les interractions et liens entre l'ensemble des tables de la base de données
 
 <br>
+
 Afin de mener mon projet à bien, j'ai décidé d'utiliser le language [**PHP**](https://www.php.net/) avec le framework [**Laravel**](https://laravel.com/).
 
 <br>
@@ -41,10 +42,38 @@ Cependant, le fichier .env (contenant l'ensemble des informations relatives à l
 <br>
 
 - Cloner le projet GitHub sur votre appareil
+
+> Une fois git installé sur votre appareil, l'utilisation de VCS est recommandée afin de cloner le projet à partir de son lien.
+
+<br>
+
 - Ajouter un fichier .env, contenant la configuration requise afin qu'il puisse accéder à votre Système de Gestion de Bases de Données
+
+> Le fichier .env regroupe l'ensemble des informations relatives au Système de Gestion de Bases de Données (SGBD & SGBDR)
+> 
+> Il est donc important d'y préciser l'hôte, l'identifiant et mot de passe d'un compte ayant suffisamment de permissions, ainsi que le nom de la base de données associée
+> 
+> Laravel ayant des configurations précises pour chaque SGBD, il est également important d'en préciser le nom (MySQL par défaut). 
+> Une liste des noms valables est est disponible dans le dossier 'config/databases.php'.
+
+<br>
+
 - Créer la base de données adéquate, de préférence en encodage ```utf8_unicode_ci```
+
+<br>
+
+- Migrer les tables et les données associées:
+```shell
+php artisan migrate:fresh --seed
+```
+> Cette étape va permettre de créer, à partir du fichier de migrations, la structure complète de la base de données
+>
+> La spécification "--seed" permet, une fois les tables créées, d'y incorporer un ensemble de valeurs prédéfinies, respectant les contraintes de clefs étrangères
+
+<br>
+
 - Mettre en place les paquets json, et installer tailwindCSS et Laravel-mix si nécessaire:
-  - Laravel-mix: 
+  - Laravel-mix:
   ```shell
   npm install laravel-mix@latest --save-dev
   ```
@@ -61,6 +90,7 @@ npx tailwindcss init
 
 > Ce fichier est principalement utile si vous souhaitez interragir avec le projet, mais n'est pas nécessaire à son fonctionnement
 
+<br>
 
 - Lancer le file watcher:
 ```shell
