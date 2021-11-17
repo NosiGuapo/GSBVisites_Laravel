@@ -108,7 +108,7 @@ class VisitesController extends Controller
         /* On vérifie que la requête est valide et que deux médicaments identiques ne soit pas sélectionnés */
 
         if (!$validation->fails()) {
-            if (!is_null($leMedecin)) {
+            if (isset($leMedecin)) {
                 if (empty($inputs['drug']) || count($inputs['drug']) == count(array_unique($inputs['drug']))) {
                     try {
                         $rapport = new Rapport;
