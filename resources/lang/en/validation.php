@@ -171,8 +171,9 @@ return [
         ],
         'phone' => [
             'required' => 'Le numéro de téléphone du médecin doit être renseigné.',
-            'regex', 'max' => 'Le format du numéro de téléphone est invalide.',
-            'unique' => 'Le numéro est déja attribué à un autre médecin'
+            'regex' => 'Le format du numéro de téléphone est invalide.',
+            'unique' => 'Le numéro est déja attribué à un autre médecin',
+            'max' => 'Le format du numéro de téléphone est invalide.'
         ],
         'spe' => [
             'alpha' => 'La spécialité ne peut contenir que des caractères alphabétiques.',
