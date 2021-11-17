@@ -182,7 +182,8 @@ return [
         'motive' => [
             'required' => 'Veuillez préciser le motif de visite.',
             'max' => 'Le motif contient plus de :max caractères.',
-            'min' => 'Le motif indiqué est trop court.'
+            'min' => 'Le motif indiqué est trop court.',
+            'in' => 'Le motif spécifié est invalide.'
         ],
         'balance-sheet' => [
             'required' => 'Veuillez préciser le bilan de la visite',

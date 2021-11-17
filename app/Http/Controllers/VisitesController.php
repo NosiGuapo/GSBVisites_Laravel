@@ -9,6 +9,7 @@ use App\Models\Rapport;
 use Doctrine\DBAL\Driver\PDO\Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class VisitesController extends Controller
 {
@@ -43,7 +44,11 @@ class VisitesController extends Controller
             ->whereIn('id', $mPluck)
             ->get();
 
-        return view('createVisite', compact(['medecins', 'medicaments']));
+        $motifs = Rapport::select('motif')
+            ->distinct()
+            ->paginate(6);
+
+        return view('createVisite', compact(['medecins', 'medicaments', 'motifs']));
 //        return view('createVisite')->with(compact('medecins', 'medicaments'));
     }
 
@@ -59,8 +64,18 @@ class VisitesController extends Controller
                 ->first();
         }
 
+        /* Vérification des motifs */
+        $motifs = Rapport::select('motif')
+            ->distinct()
+            ->paginate(6);
+
+        foreach ($motifs as $motive){
+            $lesMotifs[] = $motive->motif;
+        }
+
         $rules = [
-            'motive' => ['required', 'max:100', 'min:2'],
+            /* Vérifie que le paramètre est compris dans le tableau */
+            'motive' => ['required', Rule::in($lesMotifs), 'max:100', 'min:2'],
             'balance-sheet' => ['required', 'max:100', 'min:2'],
 //          'doctor' => ['required', "unique:medecins,id,$leMedecin->id"],
             'date' => ['required', 'date', 'max:10'],

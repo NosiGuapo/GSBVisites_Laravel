@@ -39,6 +39,11 @@
                     <label for="motive" class="block mb-2 uppercase font-bold text-xs text-gray-700">
                         Motif
                     </label>
+{{--                    <select name="motive" va class="border border-gray-400 p-2 w-full mb-7 outline-none">
+                        @foreach($motifs as $motif)
+                            <option>{{$motif->motif}}</option>
+                        @endforeach
+                    </select>--}}
                     <input type="text" name="motive" class="border border-gray-400 p-2 w-full"
                            value="{{ old('motive') }}">
                 </div>
