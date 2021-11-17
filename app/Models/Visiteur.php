@@ -50,4 +50,8 @@ class Visiteur extends Model
         'timespan',
         'ticket'
     ];
+
+    public function rapports(){
+        return $this->hasMany(Rapport::class);
+    }
 }

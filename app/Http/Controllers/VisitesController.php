@@ -148,16 +148,32 @@ class VisitesController extends Controller
     public function c_edit($id)
     {
         $rapport = Rapport::find($id);
-        return view('editRapport')
-            ->with('leRapport', $rapport);
+        $motifs = Rapport::select('motif')
+            ->distinct()
+            ->paginate(6);
+
+        return view('editRapport', [
+            'leRapport' => $rapport,
+            'motifs' => $motifs
+        ]);
     }
 
     public function edit(Request $request, $id)
     {
         $inputs = $request->input();
         $leRapport = Rapport::find($id);
+
+        /* Vérification des motifs */
+        $motifs = Rapport::select('motif')
+            ->distinct()
+            ->paginate(6);
+
+        foreach ($motifs as $motive){
+            $lesMotifs[] = $motive->motif;
+        }
+
         $request->validate([
-            'motive' => ['required', 'max:100', 'min:2'],
+            'motive' => ['required', Rule::in($lesMotifs), 'max:100', 'min:2'],
             'balance-sheet' => ['required', 'max:100', 'min:2'],
         ]);
         if ($inputs['motive'] !== $leRapport->motif) {

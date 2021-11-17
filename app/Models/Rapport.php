@@ -42,4 +42,8 @@ class Rapport extends Model
     public function offrirs(){
         return $this->hasMany(Offrir::class);  /* Le visiteur à pu recevoir plusieurs médicaments */
     }
+
+    public function visiteur(){
+        return $this->belongsTo(Visiteur::class);
+    }
 }

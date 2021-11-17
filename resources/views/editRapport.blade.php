@@ -17,7 +17,13 @@
                     <label for="motive" class="block mb-2 uppercase font-bold text-xs text-gray-700">
                         Motif
                     </label>
-                    <input type="text" name="motive" class="border border-gray-400 p-2 w-full" value="{{$leRapport->motif}}">
+                    <select name="motive" class="border border-gray-400 p-2 w-full outline-none">
+                        <option>{{$leRapport->motif}}</option>
+                        @foreach($motifs as $motif)
+                            <option>{{$motif->motif}}</option>
+                        @endforeach
+                    </select>
+                    {{--<input type="text" name="motive" class="border border-gray-400 p-2 w-full" value="{{$leRapport->motif}}">--}}
                 </div>
                 @error('motive')
                 <p class="text-red-500 text-sm mb-6">{{$message}}</p>
