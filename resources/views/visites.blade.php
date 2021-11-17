@@ -33,7 +33,7 @@
     @if($type != 'm')
         <div class="max-w-screen-lg mx-auto text-center my-10 flex flex-row justify-center items-center">
             <button
-                class="main-links outline-none mb-6 text-white rounded py-2 px-4 mr-5 loginbutton transition duration-300">
+                    class="main-links outline-none mb-6 text-white rounded py-2 px-4 mr-5 loginbutton transition duration-300">
                 <a href="ajouter-visite" class="">Ajouter une visite</a>
             </button>
             <div class="medecins-searchbar">
@@ -60,6 +60,11 @@
                     </div>
                 </form>
             </div>
+            @error('rapport-query')
+            <p class="form-error bg-red-50 px-3 py-4 mb-6 text-red-500 rounded text-xs mt-1">
+                {{ $message }}
+            </p>
+            @enderror
         </div>
     @endif
 
@@ -110,14 +115,14 @@
                                 </td>
                                 <td>{{ $visite->bilan }}</td>
                                 @if($type == 'v')
-                                <td>
-                                    <a href="modifier-visite/{{$visite->id}}">
-                                        <button type="submit"
-                                                class="bg-blue-400 text-white rounded py-2 px-4 hover:bg-blue-500">
-                                            Modifier
-                                        </button>
-                                    </a>
-                                </td>
+                                    <td>
+                                        <a href="modifier-visite/{{$visite->id}}">
+                                            <button type="submit"
+                                                    class="bg-blue-400 text-white rounded py-2 px-4 hover:bg-blue-500">
+                                                Modifier
+                                            </button>
+                                        </a>
+                                    </td>
                                 @endif
                             </tr>
                         </div>

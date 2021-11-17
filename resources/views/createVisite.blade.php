@@ -39,13 +39,13 @@
                     <label for="motive" class="block mb-2 uppercase font-bold text-xs text-gray-700">
                         Motif
                     </label>
-{{--                    <select name="motive" va class="border border-gray-400 p-2 w-full mb-7 outline-none">
+                    <select name="motive" class="border border-gray-400 p-2 w-full outline-none">
                         @foreach($motifs as $motif)
                             <option>{{$motif->motif}}</option>
                         @endforeach
-                    </select>--}}
-                    <input type="text" name="motive" class="border border-gray-400 p-2 w-full"
-                           value="{{ old('motive') }}">
+                    </select>
+{{--                    <input type="text" name="motive" class="border border-gray-400 p-2 w-full"
+                           value="{{ old('motive') }}">--}}
                 </div>
                 @error('motive')
                 <p class="form-error bg-red-50 px-3 py-4 mb-6 text-red-500 rounded text-xs mt-1">

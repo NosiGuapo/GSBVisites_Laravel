@@ -17,6 +17,12 @@ class VisitesController extends Controller
     {
         $type = 'v';
         $query = request('rapport-query');
+        if (isset($query)){
+            $attributes =  request()->validate([
+                'rapport-query' => ['required', 'date', 'max:10'],
+            ]);
+        }
+
         if (request('rapport-query')) {
             if ($query == "") {
                 return back()
